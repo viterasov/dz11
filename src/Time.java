@@ -9,6 +9,8 @@ public class Time {
         myThread.start();
         TimeOut timeOut = new TimeOut();
         timeOut.start();
+        MyThread1 myThread1 = new MyThread1();
+        myThread1.start();
 
 
     }
@@ -54,5 +56,25 @@ class TimeOut extends Thread {
         shceduler.scheduleAtFixedRate(myTread, 0, 1, SECONDS);
         {
         }
+    }
+}
+class MyThread1 extends Thread {
+    public void run() {
+        final ScheduledExecutorService shceduler = Executors.newScheduledThreadPool(1);
+        final MyThread1 myThread1 = new MyThread1() {
+
+
+            @Override
+            public void run() {
+                try {
+                    sleep(7000);
+                    System.out.println("прошло 7 сукунд");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+
+                }
+            }
+        };
+        shceduler.scheduleAtFixedRate(myThread1, 0, 1, SECONDS);
     }
 }
